@@ -1,0 +1,37 @@
+{
+  "language": {
+    "preAnalyze": true,
+    "maxSteps": 10000,
+    "maxRecursionDepth": 100
+  },
+  "hostProtocol": {
+    "name": "sibl-host-json",
+    "version": 1
+  },
+  "hostFunctions": {
+    "show_message": {
+      "args": ["string"],
+      "return": "void",
+      "sideEffect": true,
+      "description": "Show a message in the host application."
+    },
+    "play_sound": {
+      "args": ["string"],
+      "return": "void",
+      "sideEffect": true,
+      "description": "Play a named sound through the host application."
+    },
+    "get_player_x": {
+      "args": [],
+      "return": "number",
+      "sideEffect": false,
+      "description": "Return the player's current X position."
+    },
+    "set_player_position": {
+      "args": ["number", "number"],
+      "return": "void",
+      "sideEffect": true,
+      "description": "Set the player's position."
+    }
+  }
+}

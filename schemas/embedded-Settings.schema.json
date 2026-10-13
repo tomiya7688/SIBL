@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/sibl/embedded-Settings.schema.json",
+  "title": "SIBL embedded-Settings.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "language": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "preAnalyze": {
+          "type": "boolean",
+          "description": "Whether the interpreter should run pre-analysis before execution."
+        },
+        "maxSteps": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum number of execution steps."
+        },
+        "maxRecursionDepth": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Maximum recursion depth."
+        }
+      }
+    },
+    "hostProtocol": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "default": "sibl-host-json"
+        },
+        "version": {
+          "type": "integer",
+          "minimum": 1,
+          "default": 1
+        }
+      }
+    },
+    "hostFunctions": {
+      "type": "object",
+      "description": "Functions exposed by the host application to SIBL scripts.",
+      "additionalProperties": {
+        "$ref": "#/$defs/hostFunction"
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": ["language", "hostFunctions"],
+  "$defs": {
+    "siblType": {
+      "type": "string",
+      "enum": [
+        "null",
+        "bool",
+        "number",
+        "string",
+        "array",
+        "object",
+        "any",
+        "void"
+      ]
+    },
+    "hostFunction": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "args": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/siblType"
+          }
+        },
+        "return": {
+          "$ref": "#/$defs/siblType"
+        },
+        "permission": {
+          "type": "string"
+        },
+        "sideEffect": {
+          "type": "boolean",
+          "default": true
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": ["args", "return"]
+    }
+  }
+}

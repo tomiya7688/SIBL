@@ -1,0 +1,8 @@
+let x = 10
+
+if x > 5 {
+    show_message("x is large")
+    show_message("this whole if block is one execution line")
+}
+
+show_message("done")

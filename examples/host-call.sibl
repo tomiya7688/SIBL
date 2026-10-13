@@ -1,0 +1,5 @@
+let x = get_player_x()
+
+set_player_position(x + 10, 20)
+play_sound("move")
+show_message("player moved")
